@@ -1,0 +1,119 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th7 30, 2021 lúc 04:14 PM
+-- Phiên bản máy phục vụ: 10.4.13-MariaDB
+-- Phiên bản PHP: 7.2.32
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `assignments`
+--
+
+CREATE TABLE `assignments` (
+  `ID` int(11) NOT NULL,
+  `Description` varchar(120) COLLATE utf8_vietnamese_ci NOT NULL,
+  `courseID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `assignments`
+--
+
+INSERT INTO `assignments` (`ID`, `Description`, `courseID`) VALUES
+(16, 'Viết PHP script đơn giản để kiểm tra xem một email nào đó có hợp lệ không.', 12),
+(17, 'Tạo một form để nhận và hiển thị tên đăng nhập', 12),
+(18, 'Viết chương trình JavaScript lấy ngày hiện tại', 13),
+(19, 'Viết chương trình JavaScript xác định một năm nhất định có phải là năm nhuận hay không', 13),
+(20, 'Validate form bằng JQuery', 14),
+(21, 'Thiết kế giao diện giống trang Zing.vn', 15),
+(22, 'Thiết kế giao diện trang vnexpress', 15),
+(23, 'Thiết kế giao diện', 15);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `courses`
+--
+
+CREATE TABLE `courses` (
+  `courseID` int(11) NOT NULL,
+  `courseName` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `courses`
+--
+
+INSERT INTO `courses` (`courseID`, `courseName`) VALUES
+(12, 'PHP'),
+(13, 'JavaScript'),
+(14, 'JQuery'),
+(15, 'HTML/CSS'),
+(16, 'Python'),
+(17, 'Java');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `assignments`
+--
+ALTER TABLE `assignments`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `courseID` (`courseID`);
+
+--
+-- Chỉ mục cho bảng `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`courseID`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `assignments`
+--
+ALTER TABLE `assignments`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT cho bảng `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `courseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `assignments`
+--
+ALTER TABLE `assignments`
+  ADD CONSTRAINT `courseID` FOREIGN KEY (`courseID`) REFERENCES `courses` (`courseID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
